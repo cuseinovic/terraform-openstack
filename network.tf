@@ -12,10 +12,10 @@ resource "openstack_networking_network_v2" "generic" {
 #### HTTP SUBNET ####
 
 # Subnet http configuration
-resource "openstack_networking_subnet_v2" "sub-demo" {
-  name            = var.network_subnet["subnet_name"]
+resource "openstack_networking_subnet_v2" "subnet" {
+  name            = var.network_cidr["subnet_name"]
   network_id      = openstack_networking_network_v2.generic.id
-  cidr            = ${var.network_http["cidr"]}
+  cidr            = ${var.network_cidr["cidr"]}
   dns_nameservers = ${var.dns_ip}
 }
 
