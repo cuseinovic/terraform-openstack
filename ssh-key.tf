@@ -1,0 +1,6 @@
+
+resource "openstack_compute_keypair_v2" "user_key" {
+  name       = "chriskey"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYym2YIbA+VcSZE0hw0+/uwmLUd5gXI+DdOMsLkMViZR7Ov0N9Ra5X/2jHgXOyfG5zyMn4WgFoU1294w9E285kkW598j0JXQhjjqC9XwALKTWKL6lfpE64MLPPQXAEY0xAbFcifISc8zCjp7dgh7vqm5S1FYR4viw5j083TpLVn2PzZvnZUDg6Ozjt2sJNtESQieNre4MwhRCuO5hj3cNZOREIaVxHwzzTwOcBXXPLdfavLkJ3sBkE48TPcuNkENCOeN4ukPLdhwIzae14QSMP15iA93VVEQCSYA1Mh343+RPhu/98kWqBBZxpoz+0NuVibuX+IUw3bscQazivLztL christophe@Christophe"
+}
+
