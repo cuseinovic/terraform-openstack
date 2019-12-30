@@ -1,27 +1,31 @@
+# Provider variables
+# sourced from environment variable
+variable "user_name" {}
+variable "tenant_name" {}
+variable "password" {}
+variable "auth_url" {}
+variable "region" {}
+
+# Image Configuration
 variable "image" {
   type    = string
-  default = "Centos 7"
+  default = "Ubuntu1804"
 }
 
+# Network Configuration
 variable "external_network" {
   type    = string
   default = "public"
 }
 
-# UUID of external gateway
-variable "subnet-public" {
+variable "public-subnet" {
   type    = string
-  default = "f67f0d72-0ddf-11e4-9d95-e1f29f417e2f"
+  default = "32966d84-fdac-4fec-9f28-b714e2427aba"
 }
 
 variable "dns_ip" {
   type    = list(string)
   default = ["8.8.8.8", "8.8.8.4"]
-}
-
-variable "flavor_http" {
-  type    = string
-  default = "t2.medium"
 }
 
 variable "network_cidr" {
@@ -30,4 +34,10 @@ variable "network_cidr" {
     subnet_name = "subnet-demo"
     cidr        = "192.168.100.0/24"
   }
+}
+
+# Flavor instance
+variable "flavor_http" {
+  type    = string
+  default = "m1.medium"
 }
