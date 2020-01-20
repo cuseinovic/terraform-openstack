@@ -13,14 +13,19 @@ variable "image" {
 }
 
 # Network Configuration
-variable "external_network" {
+variable "external_network_id" {
+  type    = string
+  default = "acc4ebf7-aa8d-4527-bade-7539624426c5"
+}
+
+variable "external_network_name" {
   type    = string
   default = "public"
 }
 
 variable "public-subnet" {
   type    = string
-  default = "32966d84-fdac-4fec-9f28-b714e2427aba"
+  default = "1e83732d-298b-4dc2-bc51-939076a7b1f9"
 }
 
 variable "dns_ip" {
@@ -31,7 +36,7 @@ variable "dns_ip" {
 variable "network_cidr" {
   type    = map(string)
   default = {
-    subnet_name = "subnet-demo"
+    subnet_name = "subnet-private"
     cidr        = "192.168.100.0/24"
   }
 }
@@ -39,5 +44,5 @@ variable "network_cidr" {
 # Flavor instance
 variable "flavor_http" {
   type    = string
-  default = "m1.medium"
+  default = "m1.high"
 }
