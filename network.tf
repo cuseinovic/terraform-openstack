@@ -1,12 +1,12 @@
 # Router creation
 resource "openstack_networking_router_v2" "generic" {
-  name                = "router-generic"
-  external_network_id = ${var.external_gateway}
+  name                = "router"
+  external_network_id = "${var.external_network_id}"
 }
 
 # Network creation
 resource "openstack_networking_network_v2" "generic" {
-  name = "network-generic"
+  name = "network-private"
 }
 
 #### HTTP SUBNET ####
@@ -15,12 +15,11 @@ resource "openstack_networking_network_v2" "generic" {
 resource "openstack_networking_subnet_v2" "subnet" {
   name            = var.network_cidr["subnet_name"]
   network_id      = openstack_networking_network_v2.generic.id
-  cidr            = ${var.network_cidr["cidr"]}
-  dns_nameservers = ${var.dns_ip}
+  cidr            = "${var.network_cidr["cidr"]}"
 }
 
 # Router interface configuration
 resource "openstack_networking_router_interface_v2" "demo" {
   router_id = openstack_networking_router_v2.generic.id
-  subnet_id = openstack_networking_subnet_v2.sub-demo.id
+  subnet_id = openstack_networking_subnet_v2.subnet.id
 }
