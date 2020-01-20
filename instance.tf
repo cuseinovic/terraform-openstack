@@ -1,11 +1,11 @@
 resource "openstack_compute_instance_v2" "moninstance" {
-  name        = "moninstance"
-  image_name  = ${var.image}
-  flavor_name = ${var.flavor}
-  key_pair    = ${openstack_compute_keypair_v2.user_key.name}
-  user_data   = ${file("scripts/webserver.sh")}
+  name        = "demo"
+  image_name  = "${var.image}"
+  flavor_name = "${var.flavor_http}"
+  key_pair    = "${openstack_compute_keypair_v2.user_key.name}"
+  user_data   = "${file("scripts/webserver.sh")}"
   network {
-    port = openstack_networking_port_v2.sub-demo.id
+    port = openstack_networking_port_v2.moninstance.id
   }
 }
 
@@ -19,13 +19,13 @@ resource "openstack_networking_port_v2" "moninstance" {
     openstack_compute_secgroup_v2.http.id,
   ]
   fixed_ip {
-    subnet_id = openstack_networking_subnet_v2.http.id
+    subnet_id = openstack_networking_subnet_v2.subnet.id
   }
 }
 
 # Create floating ip
 resource "openstack_networking_floatingip_v2" "fip_moninstance" {
-  pool = ${var.external_network}
+  pool = "${var.external_network_name}"
 }
 
 # Attach floating ip to instance
